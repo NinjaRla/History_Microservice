@@ -18,10 +18,10 @@ The Shareable Link Microservice records the session ID and stores the history da
 
   The service runs locally on: http://localhost:3070/
 
-  The service is hosted on Render: 
+  The service is hosted on Render: https://history-microservice.onrender.com/
 
 **REQUESTING DATA from the microservice:**
-  Mandatory query parameter: (session_id, fact_id)
+Mandatory query parameter: (session_id, fact_id)
 
 ### Valid Queries
 
@@ -39,9 +39,9 @@ POST: "http://localhost:3070/history"
 ```
 On Cloud
 ```  
-GET:
+GET: "https://history-microservice.onrender.com/history?session_id=${session_id}"
 
-POST:
+POST: "https://history-microservice.onrender.com/history"
 ```
 **RECEIVING DATA from the microservice:**
 GET:
