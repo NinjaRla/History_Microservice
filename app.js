@@ -29,7 +29,21 @@ app.post('/history', (req, res) => {
         if (!records[cleanedSessionID]) {
             records[cleanedSessionID] = [];
         }
-        records[cleanedSessionID].push(cleanedFactID);
+
+        // unique fact_id enforcement
+        const historyList = records[cleanedSessionID];
+        
+        const duplicateIdx = historyList.indexOf(cleanedFactID);
+
+        if (duplicateIdx !== -1) {
+            historyList.splice(duplicateIdx, 1);                // remove it from the list if already exists
+        }
+        historyList.push(cleanedFactID);
+
+        // if list length > 5
+        if (historyList.length > 5) {
+            historyList.shift();
+        }
         
         return res.status(200).json({ 'session_id': cleanedSessionID, 'fact_id': cleanedFactID, 'message': 'Fact successfully recorded.' });
         
